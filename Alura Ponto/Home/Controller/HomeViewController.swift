@@ -18,7 +18,8 @@ class HomeViewController: UIViewController {
     // MARK: - Attributes
     
     private var timer: Timer?
-    
+    private lazy var camera = Camera()
+    private lazy var imagePickerController = UIImagePickerController()
     // MARK: - View life cycle
 
     override func viewDidLoad() {
@@ -64,7 +65,21 @@ class HomeViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func registrarButton(_ sender: UIButton) {
-        // TO DO: Abrir câmera
+    func tryOpenCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            camera.openCamera(self, imagePickerController)
+        }
     }
+    
+    @IBAction func registrarButton(_ sender: UIButton) {
+        
+    }
+}
+
+extension HomeViewController: CameraDelegate {
+    func didSelectPhoto(_ image: UIImage) {
+        let receipt = Recibo(status: false, data: Date(), foto: image)
+        Secao.shared.addRecibos(receipt)
+    }
+    
 }

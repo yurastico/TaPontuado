@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		03431DD32703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03431DD12703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld */; };
 		034DC6FA270A26BF00156335 /* Secao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DC6F9270A26BF00156335 /* Secao.swift */; };
 		03E880B22704FC4400033A34 /* Recibo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E880B12704FC4400033A34 /* Recibo.swift */; };
+		C5BCA9DE2B2EEE3D0054ECEE /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9DD2B2EEE3D0054ECEE /* Camera.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		03431DD22703BD2B00EB8D91 /* Alura_Ponto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alura_Ponto.xcdatamodel; sourceTree = "<group>"; };
 		034DC6F9270A26BF00156335 /* Secao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secao.swift; sourceTree = "<group>"; };
 		03E880B12704FC4400033A34 /* Recibo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recibo.swift; sourceTree = "<group>"; };
+		C5BCA9DD2B2EEE3D0054ECEE /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				034DC6F9270A26BF00156335 /* Secao.swift */,
 				03E880B12704FC4400033A34 /* Recibo.swift */,
 				03431DCB270290D200EB8D91 /* FormatadorDeData.swift */,
+				C5BCA9DD2B2EEE3D0054ECEE /* Camera.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,8 +200,9 @@
 		030EF19A26FBD61C000D3E42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					030EF1A126FBD61C000D3E42 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -249,6 +253,7 @@
 				03431DD32703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld in Sources */,
 				030EF1A626FBD61C000D3E42 /* AppDelegate.swift in Sources */,
 				030EF1A826FBD61C000D3E42 /* SceneDelegate.swift in Sources */,
+				C5BCA9DE2B2EEE3D0054ECEE /* Camera.swift in Sources */,
 				03431DCC270290D200EB8D91 /* FormatadorDeData.swift in Sources */,
 				03E880B22704FC4400033A34 /* Recibo.swift in Sources */,
 				030EF1C726FBE529000D3E42 /* HomeViewController.swift in Sources */,
@@ -306,6 +311,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -367,6 +373,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -391,7 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LF4G5DZZMF;
+				DEVELOPMENT_TEAM = DWNX563SG6;
 				INFOPLIST_FILE = "Alura Ponto/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,7 +417,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LF4G5DZZMF;
+				DEVELOPMENT_TEAM = DWNX563SG6;
 				INFOPLIST_FILE = "Alura Ponto/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
