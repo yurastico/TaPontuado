@@ -16,13 +16,22 @@ final class Camera: NSObject {
     weak var delegate: CameraDelegate?
     
     func openCamera(_ controller: UIViewController, _ imagePicker: UIImagePickerController) {
-        
+        imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = UIImagePickerController.isCameraDeviceAvailable(.front) ? .front : .rear
         
         controller.present(imagePicker, animated: true)
     }
+    
+    func openPhotosLibrary(_ controller: UIViewController,_ imagePicker: UIImagePickerController) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        
+        controller.present(imagePicker, animated: true)
+    }
+    
 }
 
 extension Camera: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

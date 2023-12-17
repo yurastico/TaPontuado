@@ -17,7 +17,8 @@ class ReciboViewController: UIViewController {
     @IBOutlet weak var escolhaFotoButton: UIButton!
     
     // MARK: - Atributos
-    
+    private lazy var camera = Camera()
+    private lazy var imagePickerController = UIImagePickerController()
     
     // MARK: - View life cycle
 
@@ -46,10 +47,24 @@ class ReciboViewController: UIViewController {
         reciboTableView.register(UINib(nibName: "ReciboTableViewCell", bundle: nil), forCellReuseIdentifier: "ReciboTableViewCell")
     }
     
+    func showImagePickerMenu() {
+        let alert = UIAlertController(title: "Selecao de foto", message: "Escolha uma foto da biblioteca", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Biblioteca de fotos", style: .default,handler: { action in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                self.camera.delegate = self
+                self.camera.openPhotosLibrary(self, self.imagePickerController)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+        
+        present(alert,animated: true)
+    }
+    
     // MARK: - IBActions
     
     @IBAction func escolherFotoButton(_ sender: UIButton) {
-        // TO DO: Abrir biblioteca de fotos
+        showImagePickerMenu()
     }
 }
 
@@ -83,4 +98,14 @@ extension ReciboViewController: ReciboTableViewCellDelegate {
         Secao.shared.listaDeRecibos.remove(at: index)
         reciboTableView.reloadData()
     }
+}
+
+extension ReciboViewController: CameraDelegate {
+    func didSelectPhoto(_ image: UIImage) {
+        escolhaFotoButton.setImage(UIImage(named: ""), for: .normal)
+        escolhaFotoButton.isHidden = true
+        fotoPerfilImageView.image = image
+    }
+    
+    
 }
