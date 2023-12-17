@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class HomeViewController: UIViewController {
 
     // MARK: - IBOutlets
@@ -16,6 +16,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var registrarButton: UIButton!
 
     // MARK: - Attributes
+    
+    var context: NSManagedObjectContext = {
+        let context = UIApplication.shared.delegate as! AppDelegate
+        return context.persistentContainer.viewContext
+    }()
     
     private var timer: Timer?
     private lazy var camera = Camera()
@@ -79,7 +84,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: CameraDelegate {
     func didSelectPhoto(_ image: UIImage) {
         let receipt = Recibo(status: false, data: Date(), foto: image)
-        Secao.shared.addRecibos(receipt)
+        receipt.save(context)
     }
     
 }

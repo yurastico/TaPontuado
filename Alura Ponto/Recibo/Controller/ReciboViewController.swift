@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class ReciboViewController: UIViewController {
     
     // MARK: - IBOutlet
@@ -19,6 +19,18 @@ class ReciboViewController: UIViewController {
     // MARK: - Atributos
     private lazy var camera = Camera()
     private lazy var imagePickerController = UIImagePickerController()
+    let searcher: NSFetchedResultsController<Recibo> = {
+        let fetchRequest: NSFetchRequest<Recibo> = Recibo.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "data", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+    }()
+    
+    var context: NSManagedObjectContext = {
+        let context = UIApplication.shared.delegate as! AppDelegate
+        return context.persistentContainer.viewContext
+    }()
     
     // MARK: - View life cycle
 
@@ -26,10 +38,16 @@ class ReciboViewController: UIViewController {
         super.viewDidLoad()
         configuraTableView()
         configuraViewFoto()
+        searcher.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        getRecibos()
         reciboTableView.reloadData()
+    }
+    
+    func getRecibos() {
+        Recibo.load(searcher)
     }
     
     // MARK: - Class methods
@@ -70,7 +88,7 @@ class ReciboViewController: UIViewController {
 
 extension ReciboViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Secao.shared.listaDeRecibos.count
+        return searcher.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +96,7 @@ extension ReciboViewController: UITableViewDataSource {
             fatalError("erro ao criar ReciboTableViewCell")
         }
         
-        let recibo = Secao.shared.listaDeRecibos[indexPath.row]
+        let recibo = searcher.fetchedObjects?[indexPath.row]
         cell.configuraCelula(recibo)
         cell.delegate = self
         cell.deletarButton.tag = indexPath.row
@@ -95,8 +113,10 @@ extension ReciboViewController: UITableViewDelegate {
 
 extension ReciboViewController: ReciboTableViewCellDelegate {
     func deletarRecibo(_ index: Int) {
-        Secao.shared.listaDeRecibos.remove(at: index)
-        reciboTableView.reloadData()
+        guard let receipt = searcher.fetchedObjects?[index] else { return }
+        receipt.delete(context)
+        //searcher.fetchedObjects?.remove(at: index)
+        //reciboTableView.reloadData()
     }
 }
 
@@ -108,4 +128,18 @@ extension ReciboViewController: CameraDelegate {
     }
     
     
+}
+
+extension ReciboViewController: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+            
+        case .delete:
+            if let indexPath {
+                reciboTableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        default:
+            reciboTableView.reloadData()
+        }
+    }
 }
