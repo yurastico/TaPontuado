@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         configuraView()
         atualizaHorario()
+        camera.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +78,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func registrarButton(_ sender: UIButton) {
+        tryOpenCamera()
         
     }
 }

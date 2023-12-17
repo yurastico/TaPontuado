@@ -32,8 +32,10 @@ extension Recibo {
     func save(_ context: NSManagedObjectContext) {
         do {
             try context.save()
+         
         } catch {
             print(error)
+   
         }
     }
     
@@ -45,7 +47,6 @@ extension Recibo {
         do {
             try fetchResultController.performFetch()
         } catch {
-            print(error)
         }
         
         
