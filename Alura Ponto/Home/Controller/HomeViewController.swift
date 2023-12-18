@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 class HomeViewController: UIViewController {
 
     // MARK: - IBOutlets
@@ -25,6 +26,13 @@ class HomeViewController: UIViewController {
     private var timer: Timer?
     private lazy var camera = Camera()
     private lazy var imagePickerController = UIImagePickerController()
+    
+    private var latitude: CLLocationDegrees?
+    private var longitude: CLLocationDegrees?
+    
+    lazy var locationManager = CLLocationManager()
+    private lazy var location = Location()
+    
     // MARK: - View life cycle
 
     override func viewDidLoad() {
@@ -32,6 +40,7 @@ class HomeViewController: UIViewController {
         configuraView()
         atualizaHorario()
         camera.delegate = self
+        userLocationRequest()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,6 +78,11 @@ class HomeViewController: UIViewController {
         horarioLabel.text = horarioAtual
     }
     
+    func userLocationRequest() {
+        location.delegate = self
+        location.permition(locationManager)
+    }
+    
     // MARK: - IBActions
     
     func tryOpenCamera() {
@@ -85,8 +99,17 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: CameraDelegate {
     func didSelectPhoto(_ image: UIImage) {
-        let receipt = Recibo(status: false, data: Date(), foto: image)
+        let receipt = Recibo(status: false, data: Date(), foto: image,latidude: latitude ?? 0.0 ,longitude: longitude ?? 0.0)
         receipt.save(context)
     }
+    
+}
+
+extension HomeViewController: LocationDelegate {
+    func updateUserLocation(latitude: Double?, longitude: Double?) {
+        self.latitude = latitude ?? 0
+        self.longitude = longitude ?? 0
+    }
+    
     
 }
