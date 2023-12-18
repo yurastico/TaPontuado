@@ -22,6 +22,7 @@
 		03E880B22704FC4400033A34 /* Recibo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E880B12704FC4400033A34 /* Recibo.swift */; };
 		C5BCA9DE2B2EEE3D0054ECEE /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9DD2B2EEE3D0054ECEE /* Camera.swift */; };
 		C5BCA9E02B302FD70054ECEE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9DF2B302FD70054ECEE /* Profile.swift */; };
+		C5BCA9E22B30608C0054ECEE /* LocalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9E12B30608C0054ECEE /* LocalAuthentication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		03E880B12704FC4400033A34 /* Recibo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recibo.swift; sourceTree = "<group>"; };
 		C5BCA9DD2B2EEE3D0054ECEE /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C5BCA9DF2B302FD70054ECEE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		C5BCA9E12B30608C0054ECEE /* LocalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthentication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				03431DCB270290D200EB8D91 /* FormatadorDeData.swift */,
 				C5BCA9DD2B2EEE3D0054ECEE /* Camera.swift */,
 				C5BCA9DF2B302FD70054ECEE /* Profile.swift */,
+				C5BCA9E12B30608C0054ECEE /* LocalAuthentication.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				030EF1D926FD2A13000D3E42 /* ReciboTableViewCell.swift in Sources */,
+				C5BCA9E22B30608C0054ECEE /* LocalAuthentication.swift in Sources */,
 				030EF1CB26FBE62E000D3E42 /* ReciboViewController.swift in Sources */,
 				03431DD32703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld in Sources */,
 				030EF1A626FBD61C000D3E42 /* AppDelegate.swift in Sources */,
