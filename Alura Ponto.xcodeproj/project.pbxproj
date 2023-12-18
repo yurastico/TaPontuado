@@ -24,6 +24,8 @@
 		C5BCA9E02B302FD70054ECEE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9DF2B302FD70054ECEE /* Profile.swift */; };
 		C5BCA9E22B30608C0054ECEE /* LocalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9E12B30608C0054ECEE /* LocalAuthentication.swift */; };
 		C5BCA9E42B3068B80054ECEE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9E32B3068B80054ECEE /* Location.swift */; };
+		C5BCA9EC2B30ED640054ECEE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BCA9EA2B30ED640054ECEE /* MapViewController.swift */; };
+		C5BCA9ED2B30ED640054ECEE /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5BCA9EB2B30ED640054ECEE /* MapViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		C5BCA9DF2B302FD70054ECEE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C5BCA9E12B30608C0054ECEE /* LocalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthentication.swift; sourceTree = "<group>"; };
 		C5BCA9E32B3068B80054ECEE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C5BCA9EA2B30ED640054ECEE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C5BCA9EB2B30ED640054ECEE /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 			children = (
 				030EF1B926FBD69B000D3E42 /* AppDelegate */,
 				030EF1BC26FBD6B8000D3E42 /* Home */,
+				C5BCA9E52B30ED160054ECEE /* Map */,
 				030EF1CF26FBE686000D3E42 /* Recibo */,
 				03431DD02703BD0A00EB8D91 /* CoreData */,
 				030EF1AE26FBD61E000D3E42 /* Assets.xcassets */,
@@ -180,6 +185,31 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		C5BCA9E52B30ED160054ECEE /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCA9E72B30ED320054ECEE /* View */,
+				C5BCA9E62B30ED2B0054ECEE /* Controller */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C5BCA9E62B30ED2B0054ECEE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCA9EA2B30ED640054ECEE /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C5BCA9E72B30ED320054ECEE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCA9EB2B30ED640054ECEE /* MapViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				030EF1CC26FBE62E000D3E42 /* ReciboViewController.xib in Resources */,
+				C5BCA9ED2B30ED640054ECEE /* MapViewController.xib in Resources */,
 				030EF1DA26FD2A13000D3E42 /* ReciboTableViewCell.xib in Resources */,
 				030EF1B226FBD61E000D3E42 /* LaunchScreen.storyboard in Resources */,
 				030EF1AF26FBD61E000D3E42 /* Assets.xcassets in Resources */,
@@ -259,6 +290,7 @@
 				03431DD32703BD2B00EB8D91 /* Alura_Ponto.xcdatamodeld in Sources */,
 				030EF1A626FBD61C000D3E42 /* AppDelegate.swift in Sources */,
 				030EF1A826FBD61C000D3E42 /* SceneDelegate.swift in Sources */,
+				C5BCA9EC2B30ED640054ECEE /* MapViewController.swift in Sources */,
 				C5BCA9E02B302FD70054ECEE /* Profile.swift in Sources */,
 				C5BCA9DE2B2EEE3D0054ECEE /* Camera.swift in Sources */,
 				03431DCC270290D200EB8D91 /* FormatadorDeData.swift in Sources */,

@@ -30,7 +30,7 @@ final class Location: NSObject {
         case .denied:
             break
         case .authorizedAlways, .authorizedWhenInUse:
-            break
+            locationManager.startUpdatingLocation()
         @unknown default:
             fatalError()
         }
