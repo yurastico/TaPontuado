@@ -8,6 +8,10 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    enum ShortcutType: String {
+        case register = "RegistrarPonto"
+    }
 
     var window: UIWindow?
 
@@ -35,10 +39,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.viewControllers = [homeController, reciboController]
         tabBarController.selectedViewController = homeController
         
-        window?.rootViewController = tabBarController
+        let navigationController = UINavigationController(rootViewController: tabBarController)
+        navigationController.navigationBar.isHidden = true
+        
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
+    
+    
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -67,6 +77,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let tipo = ShortcutType(rawValue: shortcutItem.type) {
+            switch tipo {
+            case .register:
+                let navigationController = window?.rootViewController as? UINavigationController
+                if let tabBarController = navigationController?.viewControllers.first as? UITabBarController {
+                    navigationController?.popToRootViewController(animated: true)
+                    if let home = tabBarController.viewControllers?.first as? HomeViewController {
+                        home.tryOpenCamera()
+                    }
+                }
+            }
+        }
+    }
 }
 
