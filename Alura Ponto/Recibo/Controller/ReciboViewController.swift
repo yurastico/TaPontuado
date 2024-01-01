@@ -135,7 +135,10 @@ extension ReciboViewController: ReciboTableViewCellDelegate {
         LocalAuthentication().authorizeUser { [weak self] authenticated in
             if authenticated {
                 let receipt = self?.receipts[index]
-               
+                self?.receiptService.delete(id: "\(receipt?.id)", completion: {
+                    self?.receipts.remove(at: index)
+                    self?.reciboTableView.reloadData()
+                })
                // receipt.delete(context)
             }
         }

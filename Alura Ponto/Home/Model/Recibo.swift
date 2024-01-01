@@ -18,10 +18,10 @@ class Recibo: NSManagedObject {
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
     
-    convenience init(status: Bool, data: Date, foto: UIImage, latidude: Double,longitude: Double) {
+    convenience init(id: UUID? = UUID(),status: Bool, data: Date, foto: UIImage, latidude: Double,longitude: Double) {
         let context = UIApplication.shared.delegate as! AppDelegate
         self.init(context: context.persistentContainer.viewContext)
-        self.id = UUID()
+        self.id = id ?? UUID()
         self.status = status
         self.data = data
         self.foto = foto
@@ -34,11 +34,13 @@ class Recibo: NSManagedObject {
               let date = FormatadorDeData().getDate(dateString),
               let status = json["status"] as? Bool else { return nil}
         
+        guard let id = json["id"] as? String, let uuid = UUID(uuidString: id) else { return nil }
+        
         guard let localization = json["localizacao"] as? [String: Any] else { return nil}
         let latitude = localization["latitude"] as? Double ?? 0.0
         let longitude = localization["longitude"] as? Double ?? 0.0
         
-        let receipt = Recibo(status: status, data: date, foto: UIImage(), latidude: latitude, longitude: longitude)
+        let receipt = Recibo(id: uuid, status: status, data: date, foto: UIImage(), latidude: latitude, longitude: longitude)
         
         return receipt
         

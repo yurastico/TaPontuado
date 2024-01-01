@@ -9,6 +9,12 @@ import Foundation
 import Alamofire
 class ReceiptService {
     
+    func delete(id: String, completion: @escaping () -> Void) {
+        AF.request("http://localhost:8080/recibos/\(id)",method: .delete,headers: ["Accept": "application/json"]).responseData { _ in
+            completion()
+        }
+    }
+    
     func get(completion: @escaping (_ receipts: [Recibo]?, _ error: Error?) -> Void) {
         AF.request("http://localhost:8080/recibos",method: .get,headers: ["Accept": "application/json"]).responseJSON { response in
             switch response.result {
