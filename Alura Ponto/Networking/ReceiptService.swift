@@ -6,8 +6,29 @@
 //
 
 import Foundation
-
+import Alamofire
 class ReceiptService {
+    
+    func get(completion: @escaping (_ receipts: [Recibo]?, _ error: Error?) -> Void) {
+        AF.request("http://localhost:8080/recibos",method: .get,headers: ["Accept": "application/json"]).responseJSON { response in
+            switch response.result {
+            case .success(let json):
+                var receipts: [Recibo] = []
+                guard let receiptList = json as? [[String: Any]] else { return }
+                for receiptDict in receiptList {
+                    guard let newReceipt = Recibo.serialize(receiptDict) else { return }
+                    receipts.append(newReceipt)
+                }
+                completion(receipts,nil)
+                break
+            case .failure(let error):
+                completion(nil,error)
+                
+            }
+        }
+        
+    }
+    
     func post(_ receipt: Recibo,completion: @escaping (_ isSaved: Bool) -> Void) {
         let baseUrl = "http://localhost:8080/"
         let path = "recibos"

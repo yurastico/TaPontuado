@@ -28,6 +28,22 @@ class Recibo: NSManagedObject {
         self.latitude = latidude
         self.longitude = longitude
     }
+    
+    class func serialize(_ json: [String: Any]) -> Recibo? {
+        guard let dateString = json["data"] as? String,
+              let date = FormatadorDeData().getDate(dateString),
+              let status = json["status"] as? Bool else { return nil}
+        
+        guard let localization = json["localizacao"] as? [String: Any] else { return nil}
+        let latitude = localization["latitude"] as? Double ?? 0.0
+        let longitude = localization["longitude"] as? Double ?? 0.0
+        
+        let receipt = Recibo(status: status, data: date, foto: UIImage(), latidude: latitude, longitude: longitude)
+        
+        return receipt
+        
+    }
+    
 }
 
 extension Recibo {
