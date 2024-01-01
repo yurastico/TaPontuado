@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
     private var timer: Timer?
     private lazy var camera = Camera()
     private lazy var imagePickerController = UIImagePickerController()
+    private lazy var receiptService = ReceiptService()
     
     private var latitude: CLLocationDegrees?
     private var longitude: CLLocationDegrees?
@@ -101,6 +102,13 @@ extension HomeViewController: CameraDelegate {
     func didSelectPhoto(_ image: UIImage) {
         let receipt = Recibo(status: false, data: Date(), foto: image,latidude: latitude ?? 0.0 ,longitude: longitude ?? 0.0)
         receipt.save(context)
+        
+        receiptService.post(receipt) { [weak self] isSaved in
+            if !isSaved {
+                guard let context = self?.context else { return }
+                receipt.save(context)
+            }
+        }
     }
     
 }
